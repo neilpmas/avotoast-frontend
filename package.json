@@ -1,5 +1,5 @@
 {
-  "name": "template-application-frontend",
+  "name": "avotoast-frontend",
   "private": true,
   "workspaces": [
     "apps/*",
