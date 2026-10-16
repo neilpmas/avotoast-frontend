@@ -60,7 +60,7 @@ C4Container
 
 Auth is handled by **[Bezzie](https://github.com/neilpmas/bezzie)** — an open source BFF OAuth 2.0 library for Cloudflare Workers. JWTs never touch the browser; the React app holds only a session cookie.
 
-Full login and per-request flow diagrams live in [avotoast-planning](https://github.com/neilpmas/avotoast-planning#web-bff-based-oauth-bcp212) — this repo implements that flow, it isn't the source of truth for it.
+Full login and per-request flow diagrams live in [avotoast](https://github.com/neilpmas/avotoast#web-bff-based-oauth-bcp212) — this repo implements that flow, it isn't the source of truth for it.
 
 ## Stack
 
@@ -204,4 +204,4 @@ These values are set as [Workers secrets](https://developers.cloudflare.com/work
 
 ## Part of
 
-See [avotoast-planning](https://github.com/neilpmas/avotoast-planning) for the full stack overview, architecture decisions, Auth0 setup guide, and project workflow.
+See [avotoast](https://github.com/neilpmas/avotoast) for the full stack overview, architecture decisions, Auth0 setup guide, and project workflow.
