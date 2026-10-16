@@ -177,7 +177,7 @@ cd apps/web && npm test           # React only
 
 | Layer | Approach |
 |---|---|
-| BFF (Workers) | Vitest + `@cloudflare/vitest-pool-workers` |
+| BFF (Workers) | Vitest + `@cloudflare/vitest-plugin` |
 | React | Vitest + React Testing Library |
 | E2E | Playwright |
 
