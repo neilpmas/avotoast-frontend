@@ -1,6 +1,21 @@
-# Template Application — Frontend & BFF
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/neilpmas/avotoast/main/brand/wordmark-dark.png">
+    <img src="https://raw.githubusercontent.com/neilpmas/avotoast/main/brand/wordmark-light.png" alt="Avotoast" width="420">
+  </picture>
+</p>
 
-React frontend and Cloudflare Workers BFF (Backend for Frontend) for the template application stack.
+<p align="center"><b>Frontend &amp; BFF</b><br>
+Full-stack, toasted my way.</p>
+
+<p align="center">
+  <a href="https://github.com/neilpmas/avotoast">avotoast</a> ·
+  <a href="https://github.com/neilpmas/avotoast-frontend">frontend</a> ·
+  <a href="https://github.com/neilpmas/avotoast-backend">backend</a> ·
+  <a href="https://github.com/neilpmas/bezzie">bezzie (auth)</a>
+</p>
+
+React frontend and Cloudflare Workers BFF (Backend for Frontend) for the [Avotoast](https://github.com/neilpmas/avotoast) stack.
 
 ## What you get out of the box
 
@@ -9,7 +24,7 @@ React frontend and Cloudflare Workers BFF (Backend for Frontend) for the templat
 - Bezzie — BFF auth library handles the full Auth0 Authorization Code + PKCE flow
 - Connect protocol client — generated TypeScript client for talking to the Spring Boot backend
 - Vitest — unit tests for React and the BFF Worker
-- GitHub Actions CI — lint, test, build, deploy to Cloudflare Pages + Workers on merge to main
+- GitHub Actions CI — lint, test and build on every PR. The template has no deploy step; add one in your own app (see [Starting a New App](https://github.com/neilpmas/avotoast#starting-a-new-app))
 - Dependabot — weekly dependency updates, auto-merged for patch/minor
 
 ## Overview
@@ -40,7 +55,7 @@ Managed by [Turborepo](https://turbo.build) — `npm run dev` starts both apps i
 
 ```mermaid
 C4Container
-    title Template Application Frontend — Container Diagram
+    title Avotoast Frontend — Container Diagram
 
     Person(user, "User", "Browser user")
 
@@ -187,7 +202,7 @@ Hosted on Cloudflare Pages (web) and Cloudflare Workers (BFF). Both deploy toget
 
 ### Subsequent deploys
 
-Push to `main` — GitHub Actions deploys automatically via `wrangler deploy`.
+The template ships no deploy workflow, since the template itself is never deployed. Deploy manually with `wrangler deploy`, or add a deploy-on-merge workflow to your app's repo (see [Starting a New App](https://github.com/neilpmas/avotoast#starting-a-new-app)).
 
 ## Auth0 config reference
 
