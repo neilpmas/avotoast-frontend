@@ -24,7 +24,7 @@ These live together because the BFF exists solely to serve the frontend. They sh
 ## Repo layout
 
 ```
-template-application-frontend/
+avotoast-frontend/
 ├── apps/
 │   ├── web/          ← React app (Vite, Tailwind, shadcn/ui)
 │   └── bff/          ← Cloudflare Worker (Bezzie, Connect protocol proxy)
@@ -60,7 +60,7 @@ C4Container
 
 Auth is handled by **[Bezzie](https://github.com/neilpmas/bezzie)** — an open source BFF OAuth 2.0 library for Cloudflare Workers. JWTs never touch the browser; the React app holds only a session cookie.
 
-Full login and per-request flow diagrams live in [template-application-planning](https://github.com/neilpmas/template-application-planning#web-bff-based-oauth-bcp212) — this repo implements that flow, it isn't the source of truth for it.
+Full login and per-request flow diagrams live in [avotoast-planning](https://github.com/neilpmas/avotoast-planning#web-bff-based-oauth-bcp212) — this repo implements that flow, it isn't the source of truth for it.
 
 ## Stack
 
@@ -204,4 +204,4 @@ These values are set as [Workers secrets](https://developers.cloudflare.com/work
 
 ## Part of
 
-See [template-application-planning](https://github.com/neilpmas/template-application-planning) for the full stack overview, architecture decisions, Auth0 setup guide, and project workflow.
+See [avotoast-planning](https://github.com/neilpmas/avotoast-planning) for the full stack overview, architecture decisions, Auth0 setup guide, and project workflow.
