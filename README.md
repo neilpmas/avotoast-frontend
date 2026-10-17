@@ -31,7 +31,7 @@ React frontend and Cloudflare Workers BFF (Backend for Frontend) for the [Avotoa
 
 This repo contains two tightly coupled layers that deploy together:
 
-- **React app** (`apps/web`) — the browser UI, hosted on Cloudflare Pages
+- **React app** (`apps/web`) — the browser UI, served as static assets by a Cloudflare Worker (`apps/web/wrangler.toml`)
 - **BFF** (`apps/bff`) — Cloudflare Worker that sits between the browser and the Spring Boot backend, owns the OAuth flow, and proxies API requests via Connect protocol
 
 These live together because the BFF exists solely to serve the frontend. They share a Cloudflare deployment.
@@ -90,7 +90,7 @@ Full login and per-request flow diagrams live in [avotoast](https://github.com/n
 | Auth library | [Bezzie](https://github.com/neilpmas/bezzie) | — |
 | Session storage | Cloudflare KV | — |
 | BFF → Backend | Connect protocol | — |
-| Hosting | Cloudflare Pages + Workers | — |
+| Hosting | Cloudflare Workers (static assets + BFF) | — |
 
 ## Local development
 
@@ -183,11 +183,11 @@ cd apps/web && npm test           # React only
 
 ## Deployment
 
-Hosted on Cloudflare Pages (web) and Cloudflare Workers (BFF). Both deploy together via Wrangler.
+Both layers run as Cloudflare Workers: the web app as static assets (`apps/web/wrangler.toml`, with single-page-app fallback to `index.html`), the BFF as a Worker. Both deploy via Wrangler. Don't add a `public/_redirects` SPA rule: with `not_found_handling = "single-page-application"` it causes an infinite redirect loop.
 
 ### First deploy
 
-1. Create a Cloudflare Pages project linked to this repo.
+1. Create Cloudflare Workers Builds projects linked to this repo (one per app: `apps/web` and `apps/bff`). Each project name must match the `name` in its `wrangler.toml`.
 2. Set Workers secrets via Wrangler:
    ```bash
    cd apps/bff

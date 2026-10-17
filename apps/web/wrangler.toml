@@ -1,0 +1,9 @@
+name = "template-web"
+compatibility_date = "2025-08-15"
+
+# Routes (which hostname/paths this Worker serves) are per-app: add a `routes` entry
+# when you deploy. The BFF (apps/bff) takes /api/* and /auth/*; this serves the rest.
+
+[assets]
+directory = "./dist"
+not_found_handling = "single-page-application"
