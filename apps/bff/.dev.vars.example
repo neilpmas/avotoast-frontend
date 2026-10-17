@@ -1,2 +1,6 @@
+AUTH0_DOMAIN=your-tenant.us.auth0.com
+AUTH0_CLIENT_ID=your-auth0-client-id
 AUTH0_CLIENT_SECRET=your-auth0-client-secret
+AUTH0_AUDIENCE=https://api.your-app.com
+APP_BASE_URL=http://localhost:5173
 BACKEND_URL=http://localhost:8080

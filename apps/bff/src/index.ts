@@ -1,13 +1,13 @@
 import { Hono } from 'hono'
 import { createBezzie, providers, cloudflareKVAdapter, type OptionalVariables } from 'bezzie'
 import { createClient } from '@connectrpc/connect'
-import { createConnectTransport } from '@connectrpc/connect-web'
 import { TemplateService } from '@template/proto'
-import { workersFetch } from './lib/workersFetch'
+import { getTransport } from './lib/transport'
 import { log } from './lib/log'
 
 export interface Env {
   SESSION_KV: KVNamespace
+  AUTH0_DOMAIN: string
   AUTH0_CLIENT_ID: string
   AUTH0_CLIENT_SECRET: string
   AUTH0_AUDIENCE: string
@@ -25,7 +25,7 @@ type Variables = OptionalVariables & {
 export default {
   fetch(request: Request, env: Env, ctx: ExecutionContext) {
     const auth = createBezzie({
-      ...providers.auth0(new URL(env.APP_BASE_URL).hostname),
+      ...providers.auth0(env.AUTH0_DOMAIN),
       clientId: env.AUTH0_CLIENT_ID,
       clientSecret: env.AUTH0_CLIENT_SECRET,
       audience: env.AUTH0_AUDIENCE,
@@ -59,14 +59,11 @@ export default {
     app.get('/api/me', auth.middleware(), (c) => c.json(c.var.user))
 
     app.get('/api/info', auth.middleware(), async (c) => {
-      const transport = createConnectTransport({
-        baseUrl: `${c.env.BACKEND_URL}/connect`,
-        useBinaryFormat: true,
-        fetch: workersFetch,
-      })
-      const client = createClient(TemplateService, transport)
+      const client = createClient(TemplateService, getTransport(c.env.BACKEND_URL))
       const info = await client.getServerInfo({}, { headers: { 'x-request-id': c.var.requestId } })
-      return c.json(info)
+      // protobuf-es messages carry a $typeName field and other internals that
+      // shouldn't leak into the JSON API -- pick only the fields the frontend uses.
+      return c.json({ version: info.version, environment: info.environment })
     })
 
     return app.fetch(request, env, ctx)
