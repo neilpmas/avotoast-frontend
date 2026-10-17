@@ -4,3 +4,5 @@ AUTH0_CLIENT_SECRET=your-auth0-client-secret
 AUTH0_AUDIENCE=https://api.your-app.com
 APP_BASE_URL=http://localhost:5173
 BACKEND_URL=http://localhost:8080
+# Optional -- unset is a documented no-op, not an error. Leave blank locally.
+SENTRY_DSN=
