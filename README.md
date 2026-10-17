@@ -204,6 +204,17 @@ Both layers run as Cloudflare Workers: the web app as static assets (`apps/web/w
 
 The template ships no deploy workflow, since the template itself is never deployed. Deploy manually with `wrangler deploy`, or add a deploy-on-merge workflow to your app's repo (see [Starting a New App](https://github.com/neilpmas/avotoast#starting-a-new-app)).
 
+## Security, rate limiting and error tracking
+
+The BFF ships these on by default:
+
+- **Security headers:** every response carries a strict `Content-Security-Policy` (`default-src 'none'`, plus only what bezzie's OAuth flow contributes), along with bezzie's response-hardening headers (`X-Content-Type-Options`, `X-Frame-Options`).
+- **Rate limiting:** bezzie limits `/auth/*` (10 requests per 120s) and `/api/*` (30 per 60s, keyed on the signed-in user). Auth runs before the `/api/*` limiter on purpose: mounted the other way round, the limiter never sees a user and falls back to keying on IP. Both limiters fail open if the KV counter store errors. They don't stop an unauthenticated flood from waking the Worker, so add a Cloudflare zone rate-limit rule for `/auth/*` and `/api/*` in your app (see [Starting a New App](https://github.com/neilpmas/avotoast#starting-a-new-app)).
+- **Error tracking:** `@sentry/cloudflare` wraps the Worker, errors only (`tracesSampleRate: 0`, no default PII). Set `SENTRY_DSN` to turn it on.
+- **One auth instance per Worker isolate:** `createBezzie()` is built once and reused, so Auth0's OIDC discovery document is fetched once, not on every request.
+
+The web app's own CSP lives in `apps/web/public/_headers` (see the hub's setup guide).
+
 ## Auth0 config reference
 
 These values are set as [Workers secrets](https://developers.cloudflare.com/workers/configuration/secrets/) — never in `wrangler.toml` or committed to source control.
@@ -216,6 +227,7 @@ These values are set as [Workers secrets](https://developers.cloudflare.com/work
 | `AUTH0_AUDIENCE` | API identifier, e.g. `https://api.yourproject.com` — must match backend |
 | `APP_BASE_URL` | e.g. `https://app.yourproject.com` |
 | `BACKEND_URL` | Spring Boot backend URL, e.g. `https://api.yourproject.fly.dev` |
+| `SENTRY_DSN` | Optional. Sentry project DSN for BFF error tracking; unset is a documented no-op |
 
 ## Part of
 
