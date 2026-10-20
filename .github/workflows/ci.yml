@@ -5,6 +5,14 @@ on:
     branches: ["*"]
   pull_request:
     branches: ["*"]
+  # Lets you re-run CI by hand on main, which also re-triggers anything that
+  # hangs off CI completing (e.g. a deploy workflow_run).
+  workflow_dispatch: {}
+
+# Least privilege: CI only reads the repo. Without this block the token gets
+# the repo default, which CodeQL flags as actions/missing-workflow-permissions.
+permissions:
+  contents: read
 
 jobs:
   build:

@@ -23,4 +23,11 @@ jobs:
         run: gh pr merge --auto --squash "$PR_URL"
         env:
           PR_URL: ${{ github.event.pull_request.html_url }}
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # A merge made with GITHUB_TOKEN does not trigger workflows (GitHub's
+          # rule against recursive runs), so CI and deploy never run on main
+          # for these merges. A PAT counts as a real user's push, so they do.
+          # Opt-in: with no DEPENDABOT_PAT secret this falls back to
+          # GITHUB_TOKEN and behaves as before. This job runs as dependabot[bot],
+          # so the secret must be in the *Dependabot* secret store
+          # (Settings -> Secrets and variables -> Dependabot), not Actions.
+          GH_TOKEN: ${{ secrets.DEPENDABOT_PAT || secrets.GITHUB_TOKEN }}
