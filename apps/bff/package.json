@@ -21,7 +21,7 @@
     "@cloudflare/vitest-plugin": "^1.4.3",
     "@cloudflare/workers-types": "^5.20260926.1",
     "@eslint/js": "^10.0.1",
-    "eslint": "^10.10.0",
+    "eslint": "^10.13.0",
     "globals": "^17.12.0",
     "typescript": "^6",
     "typescript-eslint": "^8.71.2",
