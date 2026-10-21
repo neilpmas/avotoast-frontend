@@ -4,6 +4,11 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
+    # Dependabot's default is 5 open PRs per ecosystem. One PR stuck on an
+    # upstream blocker permanently holds a slot, so the effective limit shrinks
+    # and newer versions silently never get a PR. Raise it well above the
+    # number of dependencies that can plausibly be stuck at once.
+    open-pull-requests-limit: 20
     groups:
       # react and react-dom must move together: a bump of one without the other
       # fails the build (react-dom pins an exact react version). Their types are
