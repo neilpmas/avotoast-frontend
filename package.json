@@ -21,7 +21,7 @@
   "devDependencies": {
     "turbo": "^2.11.9",
     "typescript": "^6.0.3",
-    "vitest": "^5.0.4",
+    "vitest": "^5.0.5",
     "wrangler": "^4.149.0"
   },
   "allowScripts": {
