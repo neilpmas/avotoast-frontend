@@ -18,7 +18,7 @@
     "hono": "^4.13.13"
   },
   "devDependencies": {
-    "@cloudflare/vitest-plugin": "^1.4.7",
+    "@cloudflare/vitest-plugin": "^1.4.8",
     "@cloudflare/workers-types": "^5.20261016.1",
     "@eslint/js": "^10.0.1",
     "eslint": "^10.13.0",
@@ -26,6 +26,6 @@
     "typescript": "^6",
     "typescript-eslint": "^8.72.0",
     "vitest": "^5.0.5",
-    "wrangler": "^4.152.0"
+    "wrangler": "^4.153.0"
   }
 }
