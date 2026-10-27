@@ -19,7 +19,7 @@
     "dev": "turbo dev"
   },
   "devDependencies": {
-    "turbo": "^2.11.9",
+    "turbo": "^2.11.10",
     "typescript": "^6.0.3",
     "vitest": "^5.0.5",
     "wrangler": "^4.152.0"
