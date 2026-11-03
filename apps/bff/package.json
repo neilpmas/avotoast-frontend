@@ -10,7 +10,7 @@
     "lint": "eslint src"
   },
   "dependencies": {
-    "@connectrpc/connect": "^2.0.0",
+    "@connectrpc/connect": "^2.3.0",
     "@connectrpc/connect-web": "^2.2.0",
     "@sentry/cloudflare": "^11.10.0",
     "@template/proto": "*",
