@@ -18,7 +18,7 @@
     "hono": "^4.13.14"
   },
   "devDependencies": {
-    "@cloudflare/vitest-plugin": "^1.4.7",
+    "@cloudflare/vitest-plugin": "^1.5.1",
     "@cloudflare/workers-types": "^5.20261031.1",
     "@eslint/js": "^10.0.1",
     "eslint": "^10.13.0",
