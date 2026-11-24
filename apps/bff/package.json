@@ -15,7 +15,7 @@
     "@sentry/cloudflare": "^11.12.0",
     "@template/proto": "*",
     "bezzie": "^1.5.0",
-    "hono": "^4.13.18"
+    "hono": "^4.13.19"
   },
   "devDependencies": {
     "@cloudflare/vitest-plugin": "^1.8.2",
