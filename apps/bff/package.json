@@ -12,7 +12,7 @@
   "dependencies": {
     "@connectrpc/connect": "^2.3.0",
     "@connectrpc/connect-web": "^2.3.0",
-    "@sentry/cloudflare": "^11.12.0",
+    "@sentry/cloudflare": "^11.16.0",
     "@template/proto": "*",
     "bezzie": "^1.5.0",
     "hono": "^4.13.19"
